@@ -101,8 +101,3 @@ Desenvolvido por **iamT0ddykk**
 ## 📄 Licença
 
 Este projeto foi desenvolvido para fins de estudo e prática.
-
-```
-
-Se você me passar o **link do repositório**, também posso adaptar a estrutura do README exatamente ao seu projeto.
-```
