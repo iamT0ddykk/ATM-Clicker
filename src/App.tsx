@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import "./App.css";
-import { MoneyBtn } from "./components/MoneyBtn";
+import "./styles/App.css";
+import { Btn } from "./components/Btn";
+
+//transformar em um clicker
+
+//funcao "trabalhar", inicia um timer e no final da muito dinheiro
+
+//funcao gastar, comprar boosts ou skins
 
 function App() {
   const [dinheiroBanco, setDinheiroBanco] = useState(0);
@@ -12,10 +18,6 @@ function App() {
   useEffect(() => {}, [dinheiroFisico]);
   return (
     <>
-      <div className="buttons">
-        <MoneyBtn onClick={() => setDinheiroFisico(dinheiroFisico + 1)} />
-      </div>
-
       <h2 ref={dinheiroRef}>Seu Dinheiro Fisico : {dinheiroFisico}R$</h2>
 
       <div className="atm-container">
@@ -53,6 +55,10 @@ function App() {
             Adicionar
           </button>
         </div>
+      </div>
+
+      <div className="buttons">
+        <Btn onClick={() => setDinheiroFisico(dinheiroFisico + 1)}> 💵 </Btn>
       </div>
     </>
   );

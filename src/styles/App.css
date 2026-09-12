@@ -36,3 +36,8 @@ h2 {
   height: 4vh;
   min-width: 60px;
 }
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
