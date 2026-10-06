@@ -1,8 +1,10 @@
 import "./styles/App.css";
 import { Btn } from "./components/Btn";
 import { useAtm } from "./utils";
+import { Route, Routes } from "react-router-dom";
+import NotFound from "./pages/NotFound";
 
-function App() {
+function AtmPage() {
   const {
     dinheiroBanco,
     dinheiroFisico,
@@ -90,6 +92,15 @@ function App() {
         </Btn>
       </div>
     </>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<AtmPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
