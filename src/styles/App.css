@@ -41,3 +41,259 @@ h2 {
   justify-content: center;
   margin-top: 10%;
 }
+
+#root > h2 {
+  display: block;
+  margin: 0 0 1.5rem;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid #dce6dd;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #42624e;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(35, 57, 42, 0.05);
+}
+
+.atm-container {
+  width: min(100%, 440px);
+  min-width: 0;
+  margin: 0;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  align-items: stretch;
+  border: 1px solid #e7ece7;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 24px 60px rgba(35, 57, 42, 0.08),
+    0 2px 8px rgba(35, 57, 42, 0.03);
+}
+
+.atm-container h1 {
+  margin: 0 0 0.35rem;
+  color: #17211d;
+  font-size: clamp(1.55rem, 5vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  text-align: center;
+}
+
+.atm-container > h2 {
+  display: block;
+  margin: 0 0 1.5rem;
+  color: #718078;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.atm-container .tela {
+  width: 100%;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #e6eee7;
+  border-radius: 16px;
+  background: #f6f9f6;
+}
+
+.atm-container .tela input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #dce5dd;
+  border-radius: 10px;
+  background: #fff;
+  color: #17211d;
+  font-size: 0.95rem;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.atm-container .tela input::placeholder {
+  color: #99a59d;
+}
+
+.atm-container .tela input:focus {
+  border-color: #72977b;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(114, 151, 123, 0.16);
+}
+
+.atm-container .tela button {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: #234d35;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.atm-container .tela button:hover {
+  transform: translateY(-1px);
+  background: #1b402b;
+  box-shadow: 0 5px 12px rgba(35, 77, 53, 0.16);
+}
+
+.atm-container .tela button:active {
+  transform: translateY(0);
+}
+
+.atm-container .tela button:focus-visible,
+.buttons .btn:focus-visible {
+  outline: 3px solid rgba(75, 129, 88, 0.38);
+  outline-offset: 3px;
+}
+
+.atm-container .tela button:not(.retirar) {
+  border-color: #dce7de;
+  background: #fff;
+  color: #31573d;
+}
+
+.atm-container .tela button:not(.retirar):hover {
+  background: #edf4ee;
+}
+
+.buttons {
+  margin-top: 1.25rem;
+}
+
+#root > h2 {
+  margin-bottom: 1.25rem;
+  border: 1px solid #393c43;
+  background: #222429;
+  color: #e2e3e6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.atm-container {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #383b42;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #292b31, #202126 72%);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.36),
+    0 0 38px rgba(255, 255, 255, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.atm-container::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: #d7d8dc;
+  content: "";
+}
+
+.atm-container h1 {
+  color: #f6f4ff;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.atm-container > h2 {
+  color: #a5a7ae;
+}
+
+.atm-container .tela {
+  border-color: #393b42;
+  background: #191a1f;
+}
+
+.atm-container .tela input {
+  border-color: #41434a;
+  background: #292a30;
+  color: #f5f7ff;
+}
+
+.atm-container .tela input::placeholder {
+  color: #92949c;
+}
+
+.atm-container .tela input:focus {
+  border-color: #c5c7cd;
+  box-shadow: 0 0 0 3px rgba(220, 222, 227, 0.1);
+}
+
+.atm-container .tela button {
+  border-color: #e0e1e4;
+  background: linear-gradient(180deg, #e4e5e8, #c4c6cb);
+  color: #292a2e;
+  font-weight: 700;
+  box-shadow: 0 4px 0 #85878d;
+}
+
+.atm-container .tela button:hover {
+  background: linear-gradient(180deg, #f0f0f2, #d0d1d5);
+  box-shadow:
+    0 5px 0 #85878d,
+    0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.atm-container .tela button:active {
+  box-shadow: 0 1px 0 #85878d;
+}
+
+.atm-container .tela button:not(.retirar) {
+  border-color: #45474e;
+  background: #303137;
+  color: #e1e2e5;
+  box-shadow: 0 4px 0 #17181c;
+}
+
+.atm-container .tela button:not(.retirar):hover {
+  background: #3a3b42;
+  box-shadow: 0 5px 0 #17181c;
+}
+
+.atm-container .tela button:not(.retirar):active {
+  box-shadow: 0 1px 0 #17181c;
+}
+
+.atm-container .tela button:focus-visible,
+.buttons .btn:focus-visible {
+  outline-color: #d7d8dc;
+}
+
+.buttons {
+  margin-top: 1.75rem;
+  gap: 1rem;
+}
+
+.barra-trabalho {
+  transition: all ease 2s;
+  width: 40px;
+}
+
+.buttons .btn:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.7);
+  opacity: 0.65;
+}
+
+.recompensa-trabalho {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.side-bar {
+  right: 90%;
+  top: 0;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+}

@@ -1,28 +1,52 @@
-import { useEffect, useRef, useState } from "react";
 import "./styles/App.css";
 import { Btn } from "./components/Btn";
-
-//transformar em um clicker
-
-//funcao "trabalhar", inicia um timer e no final da muito dinheiro
-
-//funcao gastar, comprar boosts ou skins
+import { useAtm } from "./utils";
 
 function App() {
-  const [dinheiroBanco, setDinheiroBanco] = useState(0);
-  const [dinheiroFisico, setDinheiroFisico] = useState(100);
+  const {
+    dinheiroBanco,
+    dinheiroFisico,
+    prog,
+    tempoRestante,
+    tempoBoost,
+    inputRef,
+    dinheiroRef,
+    handleWork,
+    handleMoney,
+    handleComprarBoost,
+    handleTrabalhoLongo,
+    handleAdd,
+    handleRet,
+  } = useAtm();
 
-  const inputRef = useRef<HTMLInputElement>(null);
-  const dinheiroRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {}, [dinheiroFisico]);
   return (
     <>
+      <div className="side-bar">
+        {" "}
+        <Btn
+          title="Comprar boost 2x por 500$ (dura 1 minuto)"
+          onClick={handleComprarBoost}
+          disabled={tempoBoost !== null}
+        >
+          ⚡
+          <span className="recompensa-trabalho">
+            {tempoBoost === null ? "2x · 500$" : `2x · ${tempoBoost}s`}
+          </span>
+        </Btn>
+      </div>
       <h2 ref={dinheiroRef}>Seu Dinheiro Fisico : {dinheiroFisico}R$</h2>
 
       <div className="atm-container">
-        <h1>Caixa Digital</h1>
-        <h2>Seu Dinheiro do Banco : {dinheiroBanco}R$</h2>
+        <h1>Clickertalismo</h1>
+        <h2>
+          Seu Dinheiro do Banco :{" "}
+          {dinheiroBanco.toString().startsWith("-") && (
+            <span style={{ color: "#E47777" }}>{dinheiroBanco}$</span>
+          )}
+          {!dinheiroBanco.toString().startsWith("-") && (
+            <span style={{ color: "#59B98A" }}>{dinheiroBanco}$</span>
+          )}
+        </h2>
 
         <div className="tela">
           <input
@@ -32,33 +56,38 @@ function App() {
             ref={inputRef}
           />
 
-          <button
-            className="retirar"
-            onClick={() => {
-              setDinheiroBanco(dinheiroBanco - Number(inputRef.current?.value));
-              setDinheiroFisico(
-                dinheiroFisico + Number(inputRef.current?.value),
-              );
-            }}
-          >
+          <button className="retirar" onClick={handleRet}>
             Retirar
           </button>
 
-          <button
-            onClick={() => {
-              setDinheiroBanco(dinheiroBanco + Number(inputRef.current?.value));
-              setDinheiroFisico(
-                dinheiroFisico - Number(inputRef.current?.value),
-              );
-            }}
-          >
-            Adicionar
-          </button>
+          <button onClick={handleAdd}>Adicionar</button>
         </div>
       </div>
 
       <div className="buttons">
-        <Btn onClick={() => setDinheiroFisico(dinheiroFisico + 1)}> 💵 </Btn>
+        <Btn title="Gerar dinheiro" onClick={handleMoney}>
+          💵
+        </Btn>
+
+        <Btn title="Gerar " onClick={handleWork}>
+          💼
+          <progress
+            className="barra-trabalho"
+            value={prog}
+            max={100}
+          ></progress>
+        </Btn>
+
+        <Btn
+          title="Trabalhar por 30 segundos para ganhar 100$"
+          onClick={handleTrabalhoLongo}
+          disabled={tempoRestante !== null}
+        >
+          ⏱️
+          <span className="recompensa-trabalho">
+            {tempoRestante === null ? "100$" : `${tempoRestante}s`}
+          </span>
+        </Btn>
       </div>
     </>
   );
