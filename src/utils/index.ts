@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
+import { playSound } from "../func/play-money-sound";
 
 export function useAtm() {
   const [dinheiroBanco, setDinheiroBanco] = useState(0);
@@ -25,10 +26,13 @@ export function useAtm() {
       deposito(20, "Seu trabalho rendeu 20$");
 
       setProg(0);
+      playSound();
     }
   }
 
   function handleMoney() {
+    playSound();
+
     setDinheiroFisico(
       (dinheiroAtual) => dinheiroAtual + (tempoBoost !== null ? 2 : 1),
     );
@@ -77,6 +81,8 @@ export function useAtm() {
         setTempoRestante(null);
         const recompensa = boostAtivoRef.current ? 200 : 100;
         setDinheiroFisico((dinheiroAtual) => dinheiroAtual + recompensa);
+        playSound();
+
         toast.success(`Seu trabalho rendeu ${recompensa}$`);
       } else {
         setTempoRestante(tempoRestante - 1);
