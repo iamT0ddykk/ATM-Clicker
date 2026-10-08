@@ -297,3 +297,256 @@ h2 {
   flex-direction: column;
   position: fixed;
 }
+
+.casino-entry,
+.casino-back {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 1px solid #55575e;
+  border-radius: 9px;
+  background: #303137;
+  color: #f0d994;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.casino-entry {
+  width: 100%;
+  margin: 0 0 1rem;
+}
+
+.casino-entry span {
+  font-size: 1.2rem;
+}
+
+.casino-entry:hover,
+.casino-back:hover {
+  transform: translateY(-1px);
+  background: #3b3c43;
+}
+
+.casino-back {
+  padding: 0.55rem 0.8rem;
+  color: #e2e3e6;
+}
+
+.casino-entry:focus-visible,
+.casino-back:focus-visible,
+.slot-spin:focus-visible,
+.slot-bet-control input:focus-visible {
+  outline: 3px solid rgba(240, 217, 148, 0.55);
+  outline-offset: 3px;
+}
+
+.casino-page {
+  display: flex;
+  width: min(100%, 700px);
+  flex: 1;
+  flex-direction: column;
+}
+
+.casino-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.casino-header p {
+  margin: 0;
+  color: #e2e3e6;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.slot-machine {
+  position: relative;
+  width: min(100%, 500px);
+  margin: auto;
+  padding: clamp(1.25rem, 5vw, 2.5rem);
+  overflow: hidden;
+  border: 1px solid #575149;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #303137, #1f2025 75%);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.slot-machine::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #9c7738, #f0d994, #9c7738);
+  content: "";
+}
+
+.slot-heading {
+  text-align: center;
+}
+
+.slot-eyebrow {
+  margin: 0 0 0.45rem;
+  color: #d5b96e;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.slot-heading h1 {
+  margin: 0;
+  color: #f6f4ed;
+  font-size: 1.8rem;
+}
+
+.slot-heading > p:last-child {
+  margin: 0.5rem 0 0;
+  color: #a5a7ae;
+  font-size: 0.9rem;
+}
+
+.slot-reels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0 0;
+  padding: 0.75rem;
+  border: 1px solid #56504a;
+  border-radius: 12px;
+  background: #191a1f;
+}
+
+.slot-reel {
+  display: grid;
+  aspect-ratio: 1;
+  min-width: 0;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #ded2b0;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #f3e9cf, #cfc09e);
+  color: #26241f;
+  font-size: clamp(2rem, 9vw, 3.5rem);
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.8),
+    0 3px 0 #8d8064;
+}
+
+.slot-reels.is-spinning .slot-reel {
+  animation: slot-roll 160ms linear infinite;
+}
+
+.slot-result {
+  display: grid;
+  min-height: 3rem;
+  margin: 0.75rem 0;
+  place-items: center;
+  color: #f0d994;
+  font-weight: 600;
+  text-align: center;
+}
+
+.slot-controls label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #c5c6ca;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.slot-bet-control {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.65rem;
+  color: #e2e3e6;
+}
+
+.slot-bet-control input {
+  width: 100%;
+  min-width: 0;
+  height: 46px;
+  padding: 0 0.75rem;
+  border: 1px solid #4a4c53;
+  border-radius: 8px;
+  background: #25262c;
+  color: #f5f7ff;
+}
+
+.slot-spin {
+  min-width: 100px;
+  min-height: 46px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #f0d994;
+  border-radius: 8px;
+  background: #d5b96e;
+  color: #28251e;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    background-color 140ms ease;
+}
+
+.slot-spin:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #f0d994;
+}
+
+.slot-spin:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.slot-paytable {
+  margin: 1rem 0 0;
+  color: #92949c;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@keyframes slot-roll {
+  0% {
+    transform: translateY(-8px);
+    filter: blur(2px);
+  }
+
+  100% {
+    transform: translateY(8px);
+    filter: blur(2px);
+  }
+}
+
+@media (max-width: 480px) {
+  .casino-header {
+    align-items: flex-start;
+  }
+
+  .casino-header p {
+    padding-top: 0.65rem;
+    text-align: right;
+  }
+
+  .slot-bet-control {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .slot-spin {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slot-reels.is-spinning .slot-reel {
+    animation: none;
+  }
+}

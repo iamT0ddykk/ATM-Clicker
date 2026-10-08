@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./styles/App.css";
 import { Btn } from "./components/Btn";
 import { useAtm } from "./utils";
@@ -5,6 +6,8 @@ import { Route, Routes } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 
 function AtmPage() {
+  const [cassinoAberto, setCassinoAberto] = useState(false);
+  const [valorAposta, setValorAposta] = useState(10);
   const {
     dinheiroBanco,
     dinheiroFisico,
@@ -19,7 +22,76 @@ function AtmPage() {
     handleTrabalhoLongo,
     handleAdd,
     handleRet,
+    simbolosCaixa,
+    girando,
+    resultadoAposta,
+    handleAposta,
   } = useAtm();
+
+  if (cassinoAberto) {
+    return (
+      <main className="casino-page">
+        <header className="casino-header">
+          <button
+            className="casino-back"
+            onClick={() => setCassinoAberto(false)}
+          >
+            <span aria-hidden="true">&larr;</span> Voltar ao caixa
+          </button>
+          <p>Saldo físico: {dinheiroFisico}$</p>
+        </header>
+
+        <section className="slot-machine" aria-labelledby="slot-title">
+          <div className="slot-heading">
+            <h1 id="slot-title">Cassino</h1>
+          </div>
+
+          <div
+            className={`slot-reels ${girando ? "is-spinning" : ""}`}
+            aria-label={`Símbolos: ${simbolosCaixa.join(" ")}`}
+            aria-live="polite"
+          >
+            {simbolosCaixa.map((simbolo, index) => (
+              <div className="slot-reel" key={`${index}-${simbolo}`}>
+                {simbolo}
+              </div>
+            ))}
+          </div>
+
+          <p className="slot-result" role="status">
+            {girando ? "Girando..." : resultadoAposta || "Faça sua aposta"}
+          </p>
+
+          <div className="slot-controls">
+            <label htmlFor="slot-bet">Valor da aposta</label>
+            <div className="slot-bet-control">
+              <span aria-hidden="true">$</span>
+              <input
+                id="slot-bet"
+                type="number"
+                min="1"
+                step="1"
+                value={valorAposta}
+                onChange={(event) => setValorAposta(Number(event.target.value))}
+                disabled={girando}
+              />
+              <button
+                className="slot-spin"
+                onClick={() => handleAposta(valorAposta)}
+                disabled={girando || dinheiroFisico <= 0}
+              >
+                {girando ? "Girando..." : "Girar"}
+              </button>
+            </div>
+          </div>
+
+          <p className="slot-paytable">
+            Trinca: paga 10x · Dupla: paga 2x · Sem combinação: perde a aposta
+          </p>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <>
@@ -49,6 +121,10 @@ function AtmPage() {
             <span style={{ color: "#59B98A" }}>{dinheiroBanco}$</span>
           )}
         </h2>
+
+        <button className="casino-entry" onClick={() => setCassinoAberto(true)}>
+          <span aria-hidden="true">🎰</span> Abrir cassino
+        </button>
 
         <div className="tela">
           <input
